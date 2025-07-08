@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  base_url="https://stubase-backend-2.onrender.com"
+  base_url="https://stubase-backend.onrender.com"
 
   constructor(private http:HttpClient) { }
 
