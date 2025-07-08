@@ -17,6 +17,7 @@ export class AddComponent {
     name: '',
     dob: '',
     batch: '',
+    year: '',
     phone: '',
   };
 
@@ -29,14 +30,14 @@ export class AddComponent {
   ) {}
 
   onSubmit() {
-    const { name, dob, batch, phone } = this.formData;
+    const { name, dob, batch, year, phone } = this.formData;
 
-    if (!name || !dob || !batch || !phone) {
+    if (!name || !dob || !batch || !year || !phone) {
       this.toastr.warning('Please fill in all fields');
       return;
     }
 
-    if (!/^\d{10}$/.test(phone.toString())) {
+    if (!/^[0-9]{10}$/.test(phone.toString())) {
       this.toastr.error('Phone number must be exactly 10 digits');
       return;
     }
@@ -44,18 +45,20 @@ export class AddComponent {
     const dobDate = new Date(dob);
     const age = new Date().getFullYear() - dobDate.getFullYear();
     if (age < 17 || age > 30) {
-      this.toastr.error('please enter valid dob');
+      this.toastr.error('Please enter a valid DOB (age 17–30)');
       return;
     }
 
-    const batchPattern = /^\d{4}\s.+$/;
-    if (!batchPattern.test(batch)) {
-      this.toastr.error(
-        "Batch format must start with year followed by department (e.g., '2025 Computer Science')"
-      );
+    if (!/^.{2,}$/.test(batch)) {
+      this.toastr.error("Batch must contain department name");
       return;
     }
-    
+
+    if (!/^\d{4}$/.test(year.toString())) {
+      this.toastr.error("Year must be a 4-digit number (e.g., '2025')");
+      return;
+    }
+
     this.api.addStudent(this.formData).subscribe({
       next: () => {
         this.toastr.success('Student added successfully!');

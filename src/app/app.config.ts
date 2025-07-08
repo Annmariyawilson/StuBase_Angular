@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr'; // ✅ Required
+import { ToastrModule } from 'ngx-toastr'; 
 import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {

@@ -19,6 +19,7 @@ export class EditComponent {
     name: '',
     dob: '',
     batch: '',
+    year:'',
     phone: '',
   };
 
@@ -50,9 +51,9 @@ export class EditComponent {
   }
 
   onSubmit() {
-    const { name, dob, batch, phone } = this.formData;
+    const { name, dob, batch, year, phone } = this.formData;
 
-    if (!name || !dob || !batch || !phone) {
+    if (!name || !dob || !batch || !year || !phone) {
       this.toastr.warning('Please fill in all fields');
       return;
     }
@@ -69,11 +70,13 @@ export class EditComponent {
       return;
     }
 
-    const batchPattern = /^\d{4}\s.+$/;
-    if (!batchPattern.test(batch)) {
-      this.toastr.error(
-        "Batch format must start with year followed by department (e.g., '2025 Computer Science')"
-      );
+    if (!/^.{2,}$/.test(batch)) {
+      this.toastr.error("Batch must contain department name");
+      return;
+    }
+
+    if (!/^\d{4}$/.test(year.toString())) {
+      this.toastr.error("Year must be a 4-digit number (e.g., '2025')");
       return;
     }
 
