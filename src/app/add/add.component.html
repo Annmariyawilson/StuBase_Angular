@@ -1,0 +1,43 @@
+<div class="form-container">
+  <div class="form-card">
+    <div class="form-header">
+      <h1>Add New Student</h1>
+      <p>Fill in the details below to register a new student</p>
+    </div>
+    
+    <form class="student-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="nm" [(ngModel)]="formData.name" 
+               placeholder="Enter student's full name" class="form-control">
+      </div>
+      
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="db" [(ngModel)]="formData.dob" 
+               class="form-control">
+      </div>
+      
+      <div class="form-group">
+        <label for="batch">Batch</label>
+        <input type="text" id="batch" name="bt" [(ngModel)]="formData.batch" 
+               placeholder="Enter batch number or name" class="form-control">
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="number" id="phone" name="ph" [(ngModel)]="formData.phone" 
+               placeholder="Enter contact number" class="form-control">
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn btn-cancel" routerLink="/dash">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-submit" (click)="onSubmit()">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
